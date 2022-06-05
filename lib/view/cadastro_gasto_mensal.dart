@@ -126,7 +126,9 @@ class _CadastroState extends State<Cadastro> {
               child: SizedBox(
                 width: double.maxFinite,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    _inserir(context);
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.amber,
                     shape: const RoundedRectangleBorder(
