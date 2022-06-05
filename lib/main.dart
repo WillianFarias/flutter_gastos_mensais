@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'view/cadastro_gasto_mensal.dart';
+import 'view/lista_gasto_mensal.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Cadastro(),
+    home: ListaGastoMensal(),
     theme: ThemeData(
         hintColor: Color.fromARGB(255, 46, 91, 150),
         primaryColor: Colors.white,
