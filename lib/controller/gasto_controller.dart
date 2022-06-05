@@ -22,4 +22,15 @@ class GastoController {
     List<GastoMensal> gastos = await GastoMensalDao.findAll();
     return gastos;
   }
+
+  //exluir dado do bd
+  Future<String> excluir(int id) async {
+    int res = 0;
+    res = await GastoMensalDao.excluir(id);
+    if (res == 0) {
+      return "Erro ao excluir registro";
+    } else {
+      return "Excluído com sucesso.";
+    }
+  }
 }
