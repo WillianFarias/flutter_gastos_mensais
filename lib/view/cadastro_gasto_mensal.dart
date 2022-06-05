@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gastos_mensais/component/criar_textfield.dart';
 import 'package:gastos_mensais/controller/gasto_controller.dart';
 import 'package:gastos_mensais/model/gasto_mensal.dart';
+import 'lista_gasto_mensal.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key? key}) : super(key: key);
@@ -42,6 +43,15 @@ class _CadastroState extends State<Cadastro> {
         title: Text("\$ Gasto mensal \$"),
         backgroundColor: Colors.amber,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ListaGastoMensal()),
+            );
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

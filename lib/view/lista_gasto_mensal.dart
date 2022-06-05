@@ -19,6 +19,7 @@ class _ListaGastoMensalState extends State<ListaGastoMensal> {
         title: Text("\$ Gasto mensal \$"),
         backgroundColor: Colors.amber,
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: FutureBuilder<List<GastoMensal>>(
         initialData: [],
