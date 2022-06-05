@@ -38,7 +38,15 @@ hintStyle: TextStyle(color: Colors.amber),
   // GastoMensal gastoMensal =
   //     GastoMensal(null, 2020, "Setembro", "Contade agua", 50.9, "Fixo");
   // gastoController.salvar(gastoMensal).then((res) => print(res));
+
+  // GastoController gastoController = GastoController();
+  // List<GastoMensal> gastos = await gastoController.findAll();
+  // print(gastos);
+
+  GastoMensal gastoMensal =
+      GastoMensal(1, 2020, "Agosto", "Conta deluz", 90.9, "Fixo");
   GastoController gastoController = GastoController();
+  gastoController.salvar(gastoMensal).then((res) => print(res));
   List<GastoMensal> gastos = await gastoController.findAll();
   print(gastos);
 }

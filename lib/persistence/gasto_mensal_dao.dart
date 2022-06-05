@@ -97,4 +97,16 @@ class GastoMensalDao {
     }
     return result;
   }
+
+  //Excluir dado
+  static Future<int> excluir(int id) async {
+    var result = 0;
+    try {
+      Database db = await instance.database;
+      result = await db.delete(table, where: "$_id = ?", whereArgs: [id]);
+    } on Exception catch (e) {
+      return 0;
+    }
+    return result;
+  }
 }
