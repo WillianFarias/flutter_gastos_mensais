@@ -90,7 +90,7 @@ class GastoMensalDao {
     var result = 0;
     try {
       Database db = await instance.database;
-      result = await db.update(table, gastoMensal.getGastoMensal(),
+      result = await db.update(table, Map.from(gastoMensal.getGastoMensal()),
           where: "$_id = ?", whereArgs: [gastoMensal.id]);
     } on Exception catch (e) {
       return 0;
