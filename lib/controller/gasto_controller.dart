@@ -16,4 +16,10 @@ class GastoController {
       return "Salvo com sucesso.";
     }
   }
+
+  //Recupera os valores do bd
+  Future<List<GastoMensal>> findAll() async {
+    List<GastoMensal> gastos = await GastoMensalDao.findAll();
+    return gastos;
+  }
 }

@@ -60,4 +60,28 @@ class GastoMensalDao {
     }
     return result;
   }
+
+  //Metodos para recuperar valores no banco, retornando uma lista
+  static Future<List<GastoMensal>> findAll() async {
+    var result;
+    List<GastoMensal> gastos;
+    try {
+      final Database db = await instance.database;
+      result = await db.query(table);
+      gastos = _toList(result);
+    } on Exception catch (e) {
+      return [];
+    }
+    return gastos;
+  }
+
+  static List<GastoMensal> _toList(List<Map<String, dynamic>> result) {
+    final List<GastoMensal> gastos = [];
+    for (Map<String, dynamic> row in result) {
+      final GastoMensal gastoMensal = GastoMensal(row[_id], row[_ano],
+          row[_mes], row[_finalidade], row[_valor], row[_tipoGasto]);
+      gastos.add(gastoMensal);
+    }
+    return gastos;
+  }
 }
