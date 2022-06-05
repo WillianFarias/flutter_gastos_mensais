@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gastos_mensais/component/criar_textfield.dart';
+import 'package:gastos_mensais/controller/gasto_controller.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key? key}) : super(key: key);
@@ -30,6 +31,8 @@ class _CadastroState extends State<Cadastro> {
   TextEditingController _finalidadeController = TextEditingController();
   TextEditingController _valorController = TextEditingController();
   TextEditingController _tipoGastoController = TextEditingController();
+  GastoController _gastoController = GastoController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,5 +147,13 @@ class _CadastroState extends State<Cadastro> {
         ),
       ),
     );
+  }
+
+  _displaySnackBar(BuildContext context, String mensagem) {
+    final snackBar = SnackBar(
+      content: Text(mensagem),
+      backgroundColor: Colors.green[900],
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
