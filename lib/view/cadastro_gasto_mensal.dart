@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gastos_mensais/component/criar_textfield.dart';
 import 'package:gastos_mensais/controller/gasto_controller.dart';
+import 'package:gastos_mensais/model/gasto_mensal.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key? key}) : super(key: key);
@@ -155,5 +156,22 @@ class _CadastroState extends State<Cadastro> {
       backgroundColor: Colors.green[900],
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  _inserir(BuildContext context) {
+    GastoMensal gastoMensal = GastoMensal(
+        null,
+        int.parse(_anoController.text),
+        _mesSelecionado,
+        _finalidadeController.text,
+        double.parse(_valorController.text),
+        _tipoGastoSelecionado);
+    setState(() {
+      _gastoController.salvar(gastoMensal).then((res) {
+        setState(() {
+          _displaySnackBar(context, res);
+        });
+      });
+    });
   }
 }
