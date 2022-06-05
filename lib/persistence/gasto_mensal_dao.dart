@@ -84,4 +84,17 @@ class GastoMensalDao {
     }
     return gastos;
   }
+
+  //Alterar dados
+  static Future<int> alterar(GastoMensal gastoMensal) async {
+    var result = 0;
+    try {
+      Database db = await instance.database;
+      result = await db.update(table, gastoMensal.getGastoMensal(),
+          where: "$_id = ?", whereArgs: [gastoMensal.id]);
+    } on Exception catch (e) {
+      return 0;
+    }
+    return result;
+  }
 }
