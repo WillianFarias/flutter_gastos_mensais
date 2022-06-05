@@ -48,4 +48,16 @@ class GastoMensalDao {
       )
     """);
   }
+
+  //Metodo insercao
+  static Future<int> inserir(GastoMensal gastoMensal) async {
+    var result = 0;
+    try {
+      Database db = await instance.database;
+      result = await db.insert(table, Map.from(gastoMensal.getGastoMensal()));
+    } on Exception catch (e) {
+      return 0;
+    }
+    return result;
+  }
 }
