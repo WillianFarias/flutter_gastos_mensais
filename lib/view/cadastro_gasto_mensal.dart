@@ -5,7 +5,9 @@ import 'package:gastos_mensais/model/gasto_mensal.dart';
 import 'lista_gasto_mensal.dart';
 
 class Cadastro extends StatefulWidget {
-  const Cadastro({Key? key}) : super(key: key);
+  // const Cadastro({Key? key}) : super(key: key);
+  Cadastro({this.gastoMensal});
+  final GastoMensal? gastoMensal;
   @override
   State<Cadastro> createState() => _CadastroState();
 }
@@ -34,6 +36,8 @@ class _CadastroState extends State<Cadastro> {
   TextEditingController _valorController = TextEditingController();
   TextEditingController _tipoGastoController = TextEditingController();
   GastoController _gastoController = GastoController();
+
+  int? _id;
 
   @override
   Widget build(BuildContext context) {
@@ -171,13 +175,15 @@ class _CadastroState extends State<Cadastro> {
   }
 
   _inserir(BuildContext context) {
-    GastoMensal gastoMensal = GastoMensal(
-        null,
-        int.parse(_anoController.text),
-        _mesSelecionado,
-        _finalidadeController.text,
-        double.parse(_valorController.text),
-        _tipoGastoSelecionado);
+    final gastoMensal = GastoMensal(
+      _id,
+      int.parse(_anoController.text),
+      _mesSelecionado,
+      _finalidadeController.text,
+      double.parse(_valorController.text),
+      _tipoGastoSelecionado,
+    );
+    debugPrint('_id - salvar = $_id');
     setState(() {
       _gastoController.salvar(gastoMensal).then((res) {
         setState(() {
@@ -185,5 +191,19 @@ class _CadastroState extends State<Cadastro> {
         });
       });
     });
+  }
+
+  @override
+  void initState() {
+    if (widget.gastoMensal != null) {
+      _id = widget.gastoMensal!.id;
+      _anoController.text = widget.gastoMensal!.ano.toString();
+      _mesController.text = widget.gastoMensal!.mes.toString();
+      _finalidadeController.text = widget.gastoMensal!.finalidade;
+      _valorController.text = widget.gastoMensal!.valor.toString();
+      _tipoGastoController.text = widget.gastoMensal!.tipoGasto.toString();
+    } else {
+      _id = null;
+    }
   }
 }

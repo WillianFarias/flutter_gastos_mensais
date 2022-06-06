@@ -48,7 +48,7 @@ class _ListaGastoMensalState extends State<ListaGastoMensal> {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final GastoMensal gastoMensal = gastos[index];
-                  return GastoItem(gastoMensal);
+                  return GastoItem(gastoMensal, index, gastos);
                 },
                 itemCount: gastos.length,
               );
